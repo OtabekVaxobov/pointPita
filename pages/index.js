@@ -1,5 +1,8 @@
 
 import commerce from "../lib/commerce";
+import ProductList from "../components/ProductList";
+import CategoryList from "../components/CategoryList";
+import Link from "next/link";
 
 export async function getStaticProps() {
 
@@ -20,9 +23,23 @@ export async function getStaticProps() {
 export default function IndexPage({ merchant, categories, products }) {
   return (
     <>
-      <pre>{JSON.stringify(merchant, null, 2)}</pre>
-      <pre>{JSON.stringify(categories, null, 2)}</pre>
-      <pre>{JSON.stringify(products, null, 2)}</pre>
+          <h1>{merchant.business_name}</h1>
+
+          <h3>
+            <Link href="/categories">
+              <a>Categories</a>
+            </Link>
+          </h3>
+
+          <CategoryList categories={categories} />
+
+          <h3>
+            <Link href="/products">
+              <a>Products</a>
+            </Link>
+          </h3>
+
+          <ProductList products={products} />
     </>
   );
 }
